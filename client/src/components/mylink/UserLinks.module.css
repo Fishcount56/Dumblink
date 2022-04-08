@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;500;800&display=swap');
+
+*{
+    font-family: 'Nunito', sans-serif;
+}
+
+.userLinksContent {
+    width: 100%;
+    background-color: #E5E5E5;
+    height: 100%;
+}
+
+.userLinksHeader{
+    background-color: #FFFFFF;
+}
+
+.userLinksHeader p{
+    font-size: 24px;
+    font-weight: 800;
+    padding-top: 30px;
+    padding-bottom: 25px;
+    margin-left: 40px;
+}
+
+.formSearchLinks {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    margin: 0px auto;
+    padding-bottom: 15px;
+}
+
+.formSearchLinks p {
+    margin-bottom: 0px;
+}
+
+.allLinksText {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.totalLinksText {
+    background-color: #FF9F00;
+    font-size: 24px;
+    font-weight: 800;
+    border-radius: 50px;
+    padding: 3px 15px;
+    margin-left: 28px;
+}
+
+.findInput {
+    margin-left: 33px;
+    width: 65%;
+    border: none;
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 400;
+    border-bottom: 1px solid #7E7A7A;
+}
+
+.buttonSearch {
+    border: none;
+    background-color: #FF9F00;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 5px 30px;
+    color: white;
+    margin-left: 55px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.userLinksList {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    margin: 60px auto;
+}
+
+.linksImage{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.linksName {
+    margin-top: 18px;
+    padding-left: 24px;
+    width: 40%;
+}
+
+.linkstitle{
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 0;
+}
+
+.linksurl {
+    font-size: 18px;
+    font-weight: 400;
+    color: #7E7A7A;
+    margin-bottom: 0;
+}
+
+.linksVisit {
+    text-align: center;
+    margin-top: 18px;
+}
+
+.titleVisitCount {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 0;
+}
+
+.titleVisit {
+    font-size: 18px;
+    font-weight: 400;
+    color: #7E7A7A;
+    margin-bottom: 0;
+}
+
+.operationButton {
+    padding-top: 25px;
+    margin-left: 300px;
+}
+
+.operationButton img{
+    max-width: 50px;
+    max-height: 50px;
+    margin-right: 37px;
+    cursor: pointer
+}
+
+.operationButton img:hover{
+    opacity: 0.9;
+}

@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;500;800&display=swap');
+
+*{
+    font-family: 'Nunito', sans-serif;
+}
+
+.sideNavbarcomps {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    position: sticky;
+}
+
+.sideNavbarlogo{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.sideNavbarlinks {
+    margin-top: -200px;
+}
+
+.sideNavbarLogout {
+    justify-content: end;
+}
+
+ul{
+    margin: 0;
+    list-style-type: none;
+}
+
+ul li{
+    padding-left: 30px;
+    text-align: left;
+}
+
+ul li img{
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    margin-right: 20px;
+    display: inline;
+}
+
+ul li a{
+    color: black;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.sideNavbarlinks ul{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.sideNavbarlinks ul li{
+    margin-bottom: 60px;
+}
+
+.sideNavbarLogout {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}

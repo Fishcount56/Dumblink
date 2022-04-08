@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;500;800&display=swap');
+
+*{
+    font-family: 'Nunito', sans-serif;
+}
+
+.dashboardmaincontent{
+    display: flex;
+    flex-direction: row;
+}
+
+.dashboardsidenav{
+    width: 20%;
+}
+
+.dashboardRightContent{
+    width: 80%;
+}

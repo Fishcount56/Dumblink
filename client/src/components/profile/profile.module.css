@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;500;800&display=swap');
+
+*{
+    font-family: 'Nunito', sans-serif;
+}
+
+.pageProfileContent {
+    width: 100%;
+    background-color: #E5E5E5;
+    height: 100vh;
+}
+
+.headerProfile {
+    background-color: #FFFFFF;
+}
+
+.headerProfile p {
+    font-size: 24px;
+    font-weight: 800;
+    padding-top: 30px;
+    padding-bottom: 25px;
+    margin-left: 40px;
+}
+
+.profileTitle {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 35px 45px;
+}
+
+.profileCard {
+    background-color: #FFFFFF;
+    margin: 0px auto;
+    width: 90%;
+    padding: 30px 25px;
+    border-radius: 10px;
+}
+
+
+.profileCard input{
+    display: block;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    border: none;
+    border-bottom: 3px solid #000000;
+    outline: none;
+    padding-bottom: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.profileButton {
+    text-align: right;
+}
+
+.profileButton button{
+    padding: 10px 30px;
+    margin-top: 45px;
+    border: none;
+    border-radius: 10px;
+}
+
+.profileButton button:hover {
+    opacity: 0.85;
+}
+
+.tombolSimpan {
+    margin-right: 30px;
+    background-color: #FF9F00;
+    color: white;
+    font-weight: 900;
+    font-size: 14px;
+}
+
+.tombolHapus {
+    margin-right: 70px;
+    background-color: #FF0000;
+    color: white;
+    font-weight: 900;
+    font-size: 14px;
+}
