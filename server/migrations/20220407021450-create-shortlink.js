@@ -17,6 +17,10 @@ module.exports = {
         onUpdate : "CASCADE",
         onDelete : "CASCADE"
       },
+      uniqueLink: {
+        type: Sequelize.STRING,
+        unique: true
+      },
       title: {
         type: Sequelize.STRING
       },
