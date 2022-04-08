@@ -11,10 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      shortlink.belongsTo(models.user, {
+        as: "UserOwner",
+        foreignKey: {
+          name: "idUser"
+        }
+      })
     }
   }
   shortlink.init({
-    name: DataTypes.STRING,
+    idUser: DataTypes.INTEGER,
+    title: DataTypes.STRING,
+    image: DataTypes.STRING,
+    description: DataTypes.TEXT,
     titlelink: DataTypes.JSON,
     link: DataTypes.JSON
   }, {
