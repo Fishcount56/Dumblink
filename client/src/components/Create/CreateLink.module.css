@@ -80,6 +80,12 @@
     display: none;
 }
 
+.imagePreview img {
+    max-width: 124px;
+    max-height: 119px;
+    object-fit: cover;
+}
+
 .imagePreview label{
     margin-left: 58px;
     cursor: pointer;
@@ -100,6 +106,9 @@
     display: none;
 }
 
+.mainInput {
+    margin-bottom: 105px;
+}
 
 .mainInput label {
     color: #7E7A7A;
@@ -123,9 +132,7 @@
 }
 
 .secondInput {
-    margin-top: 105px;
     padding-bottom: 20px;
-    
 }
 
 .linksCard {

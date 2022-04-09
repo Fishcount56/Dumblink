@@ -6,12 +6,54 @@ import Phone2 from '../../assets/Phone2.png'
 import Chess from '../../assets/Chess.png'
 
 const CreateLink = () => {
+    // Add card in form
+    const [cardForm, setCardForm] = useState([
+        {titlelinks: "", links: ""},
+        {titlelinks: "", links: ""},
+    ])
+    const addForm = () => {
+        setCardForm([...cardForm, { titlelinks: "", links: "" }]);
+    };
+
+    const formOnChange = (index, e) => {
+        const values = [...cardForm]
+        values[index][e.target.name] = e.target.value
+        setCardForm(values)
+    }
+
+    const arr1 = cardForm.map(({ titlelinks }) => titlelinks)
+    const arr2 = cardForm.map(({ links }) => links)
+
+    // For title, description and image
+    const [imagePreview, setImagePreview] = useState(null)
+    const [linkData, setLinkData] = useState({
+        titleform: "",
+        descriptionform: "",
+        imageimageform: ""
+    })
+
+    const mainOnChange = (e) => {
+        setLinkData({
+            ...linkData,
+            [e.target.name] : e.target.value,
+            [e.target.name] : e.target.type === 'file' ? e.target.files : e.target.value
+        })
+
+        if (e.target.type === 'file') {
+            let url = URL.createObjectURL(e.target.files[0])
+            setImagePreview(url)
+        }
+    }
+
+    // POST API
+
     return (
         <div className={styleCSS.createLinkContent}>
             <div className={styleCSS.createLinkHeader}>
                 <p>Template</p>
             </div>
             <div className={styleCSS.createLinkForm}>
+                <form>
                     <div className={styleCSS.createLinkFormTop}>
                         <p>Create Link</p>
                         <button className={styleCSS.formTopButton}>Publish Link</button>
@@ -20,36 +62,41 @@ const CreateLink = () => {
                         <div className={styleCSS.createLinkFormInput}>
                             <div className={styleCSS.createLinkFormInputChild}>
                                 <div className={styleCSS.imagePreview}>
-                                    <img src={Chess} alt='Preview' />
+                                    {imagePreview && (
+                                        <img src={imagePreview} alt='Preview' />
+                                    )}
                                     <label for='image'>Upload</label>
-                                    <input type='file' name='image' id='image' className={styleCSS.uploadButton}/>
+                                    <input type='file' name='imageform' id='image' className={styleCSS.uploadButton} onChange={mainOnChange}/>
                                 </div>
                                 <div className={styleCSS.mainInput}>
                                     <label for='titleform'>Title</label>
-                                    <input type='text' name='titleform' />
+                                    <input type='text' name='titleform' onChange={mainOnChange}/>
                                     <label for='descriptionform'>Description</label>
-                                    <input type='text' name='descriptionform' />
+                                    <input type='text' name='descriptionform' onChange={mainOnChange}/>
                                 </div>
-                                <div className={styleCSS.secondInput}>
-                                    <div className={styleCSS.linksCard}>
-                                        <div className={styleCSS.linkImage}>
-                                            <img src={Chess} alt='link image' />
-                                        </div>
-                                        <div className={styleCSS.linkInput}>
-                                            <label for='titlelinkform'>Title Link</label>
-                                            <input type='text' name='titlelinkform' />
-                                            <label for='titlelinkform'>Title Link</label>
-                                            <input type='text' name='titlelinkform' />
+                                {cardForm.map((item, index) => (
+                                    <div className={styleCSS.secondInput}>
+                                        <div className={styleCSS.linksCard} key={index}>
+                                            <div className={styleCSS.linkImage}>
+                                                <img src={Chess} alt='link image' />
+                                            </div>
+                                            <div className={styleCSS.linkInput}>
+                                                <label for='titlelinkform'>Title Link</label>
+                                                <input type='text' name='titlelinks' onChange={(e) => formOnChange(index, e)}/>
+                                                <label for='titlelinkform'>Title Link</label>
+                                                <input type='text' name='links' onChange={(e) => formOnChange(index, e)}/>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            <button className={styleCSS.addLinkButton}>Add new Link</button>
+                                ))}
+                            <button className={styleCSS.addLinkButton} onClick={addForm}>Add new Link</button>
                             </div>
                         </div>
                         <div className={styleCSS.createLinkFormTemplatePreview}>
                             <img src={Phone2} alt='Template 2' />
                         </div>
                     </div>
+                </form>
             </div>
         </div>
     )
