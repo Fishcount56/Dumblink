@@ -4,8 +4,10 @@ import { API } from '../../config/api'
 import { UserContext } from '../../context/userContext'
 import Phone2 from '../../assets/Phone2.png'
 import Chess from '../../assets/Chess.png'
+import { useNavigate } from "react-router-dom"
 
 const CreateLink = () => {
+    const navigate = useNavigate()
     // Add card in form
     const [cardForm, setCardForm] = useState([
         {titlelinks: "", links: ""},
@@ -29,7 +31,7 @@ const CreateLink = () => {
     const [linkData, setLinkData] = useState({
         titleform: "",
         descriptionform: "",
-        imageimageform: ""
+        imageform: ""
     })
 
     const mainOnChange = (e) => {
@@ -46,6 +48,29 @@ const CreateLink = () => {
     }
 
     // POST API
+    const handleOnSubmit = async(e) => {
+        try {
+            e.preventDefault()
+            const config = {
+                headers: {
+                    "Content-Type" : "multipart/form-data"
+                }
+            }
+
+            const formData = new FormData()
+            formData.set('title', linkData.titleform)
+            formData.set('description', linkData.descriptionform)
+            formData.set('image', linkData.imageform[0], linkData.imageform[0].name)
+            formData.set('titlelink', arr1)
+            formData.set('link', arr2)
+
+            const response = await API.post('/publishlink', formData, config)
+            console.log(response)
+            navigate('/myLinks')
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className={styleCSS.createLinkContent}>
@@ -53,10 +78,10 @@ const CreateLink = () => {
                 <p>Template</p>
             </div>
             <div className={styleCSS.createLinkForm}>
-                <form>
+                <form onSubmit={handleOnSubmit}>
                     <div className={styleCSS.createLinkFormTop}>
                         <p>Create Link</p>
-                        <button className={styleCSS.formTopButton}>Publish Link</button>
+                        <button className={styleCSS.formTopButton} type='submit'>Publish Link</button>
                     </div>
                     <div className={styleCSS.createLinkFormBottom}>
                         <div className={styleCSS.createLinkFormInput}>
@@ -83,7 +108,7 @@ const CreateLink = () => {
                                             <div className={styleCSS.linkInput}>
                                                 <label for='titlelinkform'>Title Link</label>
                                                 <input type='text' name='titlelinks' onChange={(e) => formOnChange(index, e)} autoComplete="off"/>
-                                                <label for='titlelinkform'>Title Link</label>
+                                                <label for='titlelinkform'>Link</label>
                                                 <input type='text' name='links' onChange={(e) => formOnChange(index, e)} autoComplete="off"/>
                                             </div>
                                         </div>

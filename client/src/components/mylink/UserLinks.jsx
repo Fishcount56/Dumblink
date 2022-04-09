@@ -29,7 +29,6 @@ const UserLinksContentPage = () => {
         getLinks(id)
     }, [])
 
-    console.log(userLinks)
     return (
         <div className={styleCSS.userLinksContent}>
             <div className={styleCSS.userLinksHeader}>
@@ -50,7 +49,7 @@ const UserLinksContentPage = () => {
                             <p className={styleCSS.linksurl}>localhost:3000/{item.uniqueLink}</p>
                         </div>
                         <div className={styleCSS.linksVisit}>
-                            <p className={styleCSS.titleVisitCount}>10</p>
+                            <p className={styleCSS.titleVisitCount}>{item.visitTime}</p>
                             <p className={styleCSS.titleVisit}>Visit</p>
                         </div>
                         <div className={styleCSS.operationButton}>

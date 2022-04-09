@@ -8,10 +8,9 @@ const router = require('./src/routes')
 
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(cors())
-app.use(bodyParser.json())
 app.use('/upload', express.static('upload'))
-app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/dumblink/api/', router)
 
