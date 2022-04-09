@@ -44,7 +44,8 @@ exports.register = async(req, res) => {
         const newUser = await user.create({
             fullname: data.fullnameregister,
             email: data.emailregister,
-            password: hashedPassword
+            password: hashedPassword,
+            role: "user"
         })
 
         res.status(201).send({
@@ -156,5 +157,30 @@ exports.checkAuth = async (req, res) => {
         status: "failed",
         message: "Server Error",
       })
+    }
+}
+
+exports.getUser = async (req, res) => {
+    try {
+        const getUserById = await user.findOne({
+            where: {
+                id : req.user.id
+            },
+            attributes: {
+                exclude: ['createdAt','updatedAt', 'id','password']
+            }
+        })
+        res.status(200).send({
+            status: "Success",
+            data: {
+                getUserById
+            }
+        })
+    } catch (error) {
+        console.log(error)
+        res.send({
+            status: "Failed",
+            message: "Server Error"
+        })
     }
 }

@@ -1,4 +1,4 @@
-import React, { usesState } from "react";
+import React, { usesState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom"
 import styleCSS from "./template.module.css"
@@ -6,8 +6,11 @@ import phone1 from "../../assets/Phone1.png"
 import phone2 from "../../assets/Phone2.png"
 import phone3 from "../../assets/Phone3.png"
 import phone4 from "../../assets/Phone4.png"
+import { UserContext } from "../../context/userContext";
+import  { API } from "../../config/api"
 
 const TemplateContentPage = () => {
+    const [state, dispatch] = useContext(UserContext)
     return (
         <div className={styleCSS.templateContent}>
             <div className={styleCSS.templateHeader}>

@@ -4,11 +4,21 @@ import Icon from "../../assets/Icon.png"
 import cubes from "../../assets/cubes.png"
 import user from "../../assets/user.png"
 import chain from "../../assets/chain.png"
-import logout from "../../assets/logout.png"
+import logoutIcon from "../../assets/logout.png"
 import { useNavigate } from "react-router-dom"
 import styleCSS from "./sidebar.module.css"
+import { UserContext } from "../../context/userContext"
+import { API } from "../../config/api"
 
 const SideNavbar= () => {
+    const [state, dispatch] = useContext(UserContext);
+    const navigate = useNavigate()
+    const logout = () => {
+        dispatch({
+          type: "LOGOUT",
+        });
+        navigate("/");
+    };
     return(
         <div className={styleCSS.sideNavbarcomps}>
             <div className={styleCSS.sideNavbarlogo}>
@@ -30,7 +40,7 @@ const SideNavbar= () => {
             <div className={styleCSS.sideNavbarLogout}>
                 <ul>
                     <li>
-                        <img src={logout} alt="Logout" /><Link to="/">Logout</Link>
+                        <img src={logoutIcon} alt="Logout" /><Link to="/" onClick={logout}>Logout</Link>
                     </li>
                 </ul>
             </div>

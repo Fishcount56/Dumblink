@@ -1,4 +1,4 @@
-import React, { useState, useContext} from "react"
+import React, { useState, useContext, useEffect } from "react"
 import icon from "../assets/Icon.png"
 import styleCSS from "./Landingpage.module.css"
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -6,6 +6,8 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import device from "../assets/Device.png"
 import { Modal,Form, InputGroup, Alert } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
+import { API } from '../config/api'
+import { UserContext } from "../context/userContext"
 
 const LandingPage = () => {
     const [showSignUp, setshowSignUp] = useState(false)
@@ -21,15 +23,20 @@ const LandingPage = () => {
         setshowSignIn(!showSignIn)
     }
 
-    const [message, setMessage] = useState(null);
-
-    // Navigate
     const navigate = useNavigate()
 
-    const GotoDashboard = () => {
-        navigate('/dashboard')
+    const [state, dispatch] = useContext(UserContext)
+    const [message, setMessage] = useState(null);
+    const [messega, setMessega] = useState(null)
+
+    const checkAuth = () => {
+        if (state.isLogin === true) {
+            navigate("/dashboard");
+        }
     }
 
+    checkAuth()
+    
 
     // Start Register
     const [formRegister, setFormRegister] = useState({
@@ -40,6 +47,59 @@ const LandingPage = () => {
 
     const { fullnameregister, emailregister, passwordregister } = formRegister
 
+    const handleChangeRegister = (e) => {
+        setFormRegister({
+          ...formRegister,
+          [e.target.name]: e.target.value,
+    })
+    }
+
+
+    const handleSubmitRegister = async(e) => {
+        try {
+            e.preventDefault()
+            const configregister = {
+                headers: {
+                    "Content-Type" : "application/json"
+                }
+            }
+            
+            const bodyregister = JSON.stringify(formRegister)
+            
+            const response = await API.post('/register', bodyregister, configregister)
+            console.log(response)
+            
+            if (response.data.status == "success") {
+                const alert = (
+                  <Alert variant="success" className="py-1">
+                    Success
+                  </Alert>
+                );
+                setMessage(alert);
+              } else {
+                const alert = (
+                  <Alert variant="danger" className="py-1">
+                    Failed
+                  </Alert>
+                );
+                setMessage(alert);
+              }
+              setFormRegister({
+                fullname: "",
+                email: "",
+                password: ""
+              })
+        } catch (error) {
+            console.log(error)
+            const alert = (
+                <Alert variant="danger" className="py-1">
+                  Email or password already registered
+                </Alert>
+              );
+              setMessage(alert);
+        }
+    }
+
 
 
     // Start Login
@@ -47,7 +107,39 @@ const LandingPage = () => {
         emaillogin:"",
         passwordlogin:""
     })
+
     const { emaillogin, passwordlogin } = formLogin
+
+    const handleLoginChange = (e) => {
+        setFormLogin({
+            ...formLogin,
+            [e.target.name] : e.target.value
+        })
+    }
+
+    const handleLoginSubmit = async(e) => {
+        try {
+            e.preventDefault()
+            const configlogin = {
+                headers : {
+                    "Content-Type" : "application/json"
+                }
+            }
+
+            const bodylogin = JSON.stringify(formLogin)
+            const response = await API.post('/login', bodylogin, configlogin)
+            console.log(response)
+            if (response?.status == 200) {
+                // Send data to useContext
+                dispatch({
+                  type: "LOGIN_SUCCESS",
+                  payload: response.data.data,
+                });
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className={styleCSS.landingpagecontent}>
@@ -87,17 +179,17 @@ const LandingPage = () => {
                 </Modal.Header>
                     {message && message}
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={handleSubmitRegister}>
                     <InputGroup className="mb-3">
-                        <Form.Control type="email" name="emailregister" value={emailregister} className="signupinput" placeholder="Email" autoComplete="off"/>
+                        <Form.Control type="email" name="emailregister" value={emailregister} onChange={handleChangeRegister} className="signupinput" placeholder="Email" autoComplete="off"/>
                     </InputGroup>
                     <InputGroup className="mb-3">
-                        <Form.Control type="password" name="passwordregister" value={passwordregister} className="signupinput" placeholder="Password" />
+                        <Form.Control type="password" name="passwordregister" value={passwordregister} onChange={handleChangeRegister} className="signupinput" placeholder="Password" />
                     </InputGroup>
                     <InputGroup className="mb-3">
-                        <Form.Control type="text" name="fullnameregister" value={fullnameregister} className="signupinput" placeholder="Fullname" autoComplete="off"/>
+                        <Form.Control type="text" name="fullnameregister" value={fullnameregister} onChange={handleChangeRegister} className="signupinput" placeholder="Fullname" autoComplete="off"/>
                     </InputGroup>
-                    <button className={styleCSS.signUpModalButton} type="submit" onClick={GotoDashboard}>Register</button>
+                    <button className={styleCSS.signUpModalButton} type="submit">Register</button>
                     </Form>                    
                 </Modal.Body>
                 <Modal.Footer>
@@ -120,12 +212,12 @@ const LandingPage = () => {
                 </Modal.Header>
                 {/* {messega && messega} */}
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={handleLoginSubmit}>
                     <InputGroup className="mb-3">
-                        <Form.Control type="email" className="signupinput" placeholder="Email" name="emaillogin" value={emaillogin} autoComplete="off"/>
+                        <Form.Control type="email" onChange={handleLoginChange} className="signupinput" placeholder="Email" name="emaillogin" value={emaillogin} autoComplete="off"/>
                     </InputGroup>
                     <InputGroup className="mb-3">
-                        <Form.Control type="password" className="signupinput" placeholder="Password" name="passwordlogin" value={passwordlogin}/>
+                        <Form.Control type="password" onChange={handleLoginChange} className="signupinput" placeholder="Password" name="passwordlogin" value={passwordlogin}/>
                     </InputGroup>
                     <button className={styleCSS.signInModalButton} type="submit" >Login</button>
                     </Form>                    
