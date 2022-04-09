@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   shortlink.init({
     idUser: DataTypes.INTEGER,
     uniqueLink: DataTypes.STRING,
+    visitTime: DataTypes.INTEGER,
     title: DataTypes.STRING,
     image: DataTypes.STRING,
     description: DataTypes.TEXT,

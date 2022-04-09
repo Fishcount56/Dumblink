@@ -8,6 +8,7 @@ exports.publishLink = async (req, res) => {
             idUser: req.user.id,
             title: req.body.titleform,
             uniqueLink: nanoid(8),
+            visitTime: 0,
             image: req.file.filename,
             description: req.body.descriptionform,
             titlelink: req.body.titlelinkform,
@@ -44,6 +45,14 @@ exports.publishLink = async (req, res) => {
 exports.getLink = async(req, res) => {
     const { uniqueLink } = req.params
     try {
+        const increaseVisit = await shortlink.increment({
+            visitTime: 1
+        }, 
+            { where: { 
+                uniqueLink 
+            } 
+        })
+
         let shortenLink = await shortlink.findOne({
             where: {
                 uniqueLink

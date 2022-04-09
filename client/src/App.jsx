@@ -23,10 +23,6 @@ function App() {
   useEffect(() => {
     if (!state.isLogin) {
       navigate("/landingpage")
-    } else {
-      if (state.user.role == "user") {
-        navigate("/dashboard");
-      }
     }
   }, [state])
 

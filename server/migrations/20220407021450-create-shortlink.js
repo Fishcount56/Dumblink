@@ -21,6 +21,9 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true
       },
+      visitTime: {
+        type: Sequelize.INTEGER
+      },
       title: {
         type: Sequelize.STRING
       },
