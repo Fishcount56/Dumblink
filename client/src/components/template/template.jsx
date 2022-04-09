@@ -11,6 +11,7 @@ import  { API } from "../../config/api"
 
 const TemplateContentPage = () => {
     const [state, dispatch] = useContext(UserContext)
+    const navigate = useNavigate()
     return (
         <div className={styleCSS.templateContent}>
             <div className={styleCSS.templateHeader}>
@@ -21,7 +22,7 @@ const TemplateContentPage = () => {
                     <img src={phone1} alt="template 1" />
                 </div>
                 <div className={styleCSS.bodyContent}>
-                    <img src={phone2} alt="template 2" />
+                    <img src={phone2} alt="template 2" onClick={() => navigate('/insertLink')}/>
                 </div>
                 <div className={styleCSS.bodyContent}>
                     <img src={phone3} alt="template 3" />

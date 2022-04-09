@@ -11,6 +11,7 @@ import LandingPage from './pages/Landingpage';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Profile from './pages/profile/profile';
 import MyLinks from './pages/Mylinks/Mylinks';
+import InsertPage from './pages/Insertpage/InsertPage';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token)
@@ -59,6 +60,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/myLinks" element={<MyLinks />} />
+        <Route path="/insertLink" element={<InsertPage />} />
       </Routes>
   )
 }
