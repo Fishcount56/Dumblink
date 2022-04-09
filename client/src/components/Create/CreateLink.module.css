@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;500;800&display=swap');
+
+*{
+    font-family: 'Nunito', sans-serif;
+}
+
+.createLinkContent {
+    width: 100%;
+    background-color: #E5E5E5;
+    height: 100vh;
+}
+
+.createLinkHeader {
+    background-color: #FFFFFF;
+}
+
+.createLinkHeader p{
+    font-size: 24px;
+    font-weight: 800;
+    padding-top: 30px;
+    padding-bottom: 25px;
+    margin-left: 40px;
+}
+
+.createLinkForm {
+    width: 95%;
+    margin: 15px auto;
+}
+
+.createLinkFormTop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.createLinkFormTop p {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 0px;
+}
+
+.formTopButton {
+    border: none;
+    border-radius: 10px;
+    background-color: #FF9F00;
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+    padding: 10px;
+    margin-right: 80px;
+}
+
+.formTopButton:hover {
+    opacity: 0.85;
+}
+
+.createLinkFormBottom {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.createLinkFormInput {
+    background-color: #FFFFFF;
+    padding: 23px 27px;
+    width: 50%;
+    border-radius: 10px;
+    height: 70vh;
+    overflow: hidden;
+}
+
+.createLinkFormInputChild {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.createLinkFormInputChild::-webkit-scrollbar{
+    display: none;
+}
+
+.imagePreview label{
+    margin-left: 58px;
+    cursor: pointer;
+    border: none;
+    background-color: #FF9F00;
+    padding: 11px 25px;
+    color: white;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.imagePreview label:hover {
+    opacity: 0.85;
+}
+
+.uploadButton {
+    display: none;
+}
+
+
+.mainInput label {
+    color: #7E7A7A;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 15px;
+    margin-top: 40px;
+}
+
+.mainInput input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #7E7A7A;
+    font-size: 24px;
+    font-style: 500;
+    padding-bottom: 10px;
+}
+
+.createLinkFormTemplatePreview{
+    margin-right: 100px;
+}
+
+.secondInput {
+    margin-top: 105px;
+    padding-bottom: 20px;
+    
+}
+
+.linksCard {
+    width: 100%;
+    background-color: #ECECEC;
+    padding: 15px 20px;
+    display: flex;
+    border-radius: 10px;
+}
+
+.linkImage img{
+    max-width: 120px;
+    max-height: 120px;
+}
+
+.linkInput {
+    margin-left: 18px;
+    width: 80%;
+}
+
+.linkInput label {
+    color: #7E7A7A;
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 15px;
+}
+
+.linkInput input{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #7E7A7A;
+    background-color: transparent;
+    padding-bottom: 12px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.addLinkButton {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    background-color: #FF9F00;
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.addLinkButton:hover{
+    opacity: 0.85;
+}
