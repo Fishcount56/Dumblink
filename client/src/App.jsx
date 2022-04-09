@@ -21,9 +21,17 @@ if (localStorage.token) {
 function App() {
   const [state, dispatch] = useContext(UserContext)
   const navigate = useNavigate()
+  // useEffect(() => {
+  //   if (!state.isLogin) {
+  //     navigate("/landingpage")
+  //   }
+  // }, [state])
+
   useEffect(() => {
-    if (!state.isLogin) {
-      navigate("/landingpage")
+    if (localStorage.token) {
+      setAuthToken(localStorage.token)
+    } else {
+      navigate('/landingpage')
     }
   }, [state])
 

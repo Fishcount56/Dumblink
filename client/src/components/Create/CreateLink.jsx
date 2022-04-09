@@ -70,9 +70,9 @@ const CreateLink = () => {
                                 </div>
                                 <div className={styleCSS.mainInput}>
                                     <label for='titleform'>Title</label>
-                                    <input type='text' name='titleform' onChange={mainOnChange}/>
+                                    <input type='text' name='titleform' onChange={mainOnChange} autoComplete="off"/>
                                     <label for='descriptionform'>Description</label>
-                                    <input type='text' name='descriptionform' onChange={mainOnChange}/>
+                                    <input type='text' name='descriptionform' onChange={mainOnChange} autoComplete="off"/>
                                 </div>
                                 {cardForm.map((item, index) => (
                                     <div className={styleCSS.secondInput}>
@@ -82,9 +82,9 @@ const CreateLink = () => {
                                             </div>
                                             <div className={styleCSS.linkInput}>
                                                 <label for='titlelinkform'>Title Link</label>
-                                                <input type='text' name='titlelinks' onChange={(e) => formOnChange(index, e)}/>
+                                                <input type='text' name='titlelinks' onChange={(e) => formOnChange(index, e)} autoComplete="off"/>
                                                 <label for='titlelinkform'>Title Link</label>
-                                                <input type='text' name='links' onChange={(e) => formOnChange(index, e)}/>
+                                                <input type='text' name='links' onChange={(e) => formOnChange(index, e)} autoComplete="off"/>
                                             </div>
                                         </div>
                                     </div>
