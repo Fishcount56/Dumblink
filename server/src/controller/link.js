@@ -100,6 +100,9 @@ exports.userLinks = async(req, res) => {
             }
         })
         const shortUser = JSON.parse(JSON.stringify(uLink))
+        const tesImage = shortUser.map((item) => item.image = process.env.PATH_FILE_LINK_IMAGE + item.image)
+        console.log(tesImage)
+
         res.status(400).send({
             status: "Success",
             shortUser
