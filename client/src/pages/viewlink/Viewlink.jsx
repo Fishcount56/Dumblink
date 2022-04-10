@@ -11,6 +11,7 @@ const ViewLinkPage = () => {
     const [objectPropsData, setObjectPropsData] = useState({})
 
     // get link data according to params using API
+    
     const getLink = async(uniqueLink) => {
         try {
             const response = await API.get("/getSingleLink/" + uniqueLink)
@@ -27,7 +28,6 @@ const ViewLinkPage = () => {
         getLink(uniqueLinksString)
     }, [])
 
-
     return(
         <div className={styleCSS.viewLinkMainComponent}>
             <div className={styleCSS.viewLinkMainComponentParent}>
@@ -35,7 +35,12 @@ const ViewLinkPage = () => {
                     <img src={dataLinks.image} alt='short link image' />
                     <p className={styleCSS.viewLinkTitle}>{dataLinks.title}</p>
                     <p className={styleCSS.viewLinkDescription}>{dataLinks.description}</p>
-                    <button className={styleCSS.viewLinkTitleLinks}>Vlog</button>
+                    {/* Check objectPropsData first before mapping */}
+                    {(objectPropsData.links || objectPropsData.titlelinks) && Object.keys(objectPropsData.links, objectPropsData.titlelinks).map((item, index) => (
+                        <div key={index}>
+                            <button className={styleCSS.viewLinkTitleLinks}>{objectPropsData.titlelinks[item]}</button>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

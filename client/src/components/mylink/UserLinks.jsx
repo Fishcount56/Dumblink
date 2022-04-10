@@ -33,7 +33,7 @@ const UserLinksContentPage = () => {
     let total = userLinks.length
 
     const openLink = (uniqueLink) => {
-        navigate('/' + uniqueLink)
+        navigate(window.open('/' + uniqueLink))
     }
 
 
