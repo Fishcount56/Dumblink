@@ -11,7 +11,7 @@ router.get('/checkAuth', auth, checkAuth)
 router.get('/user', auth, getUser)
 
 router.post('/publishlink', auth, uploadLink('image'), publishLink)
-router.get('/getLink/:uniqueLink', getLink)
+router.get('/getSingleLink/:uniqueLink', getLink)
 router.get('/getLinks', getLinks)
 router.get('/userLinks', auth, userLinks)
 

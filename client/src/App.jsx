@@ -2,16 +2,16 @@ import './App.css';
 import React, { useState, useContext, useEffect} from 'react'
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
-import { UserContext } from './context/userContext';
-import { API, setAuthToken } from './config/api';
+import { UserContext } from './context/userContext'
+import { API, setAuthToken } from './config/api'
 
 
-
-import LandingPage from './pages/Landingpage';
-import Dashboard from './pages/Dashboard/Dashboard';
-import Profile from './pages/profile/profile';
-import MyLinks from './pages/Mylinks/Mylinks';
-import InsertPage from './pages/Insertpage/InsertPage';
+import LandingPage from './pages/Landingpage'
+import Dashboard from './pages/Dashboard/Dashboard'
+import Profile from './pages/profile/profile'
+import MyLinks from './pages/Mylinks/Mylinks'
+import InsertPage from './pages/Insertpage/InsertPage'
+import ViewLinkPage from './pages/viewlink/Viewlink'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token)
@@ -21,11 +21,7 @@ if (localStorage.token) {
 function App() {
   const [state, dispatch] = useContext(UserContext)
   const navigate = useNavigate()
-  // useEffect(() => {
-  //   if (!state.isLogin) {
-  //     navigate("/landingpage")
-  //   }
-  // }, [state])
+
 
   useEffect(() => {
     if (localStorage.token) {
@@ -69,6 +65,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/myLinks" element={<MyLinks />} />
         <Route path="/insertLink" element={<InsertPage />} />
+        <Route path="/:uniqueLink" element={<ViewLinkPage />} />
       </Routes>
   )
 }

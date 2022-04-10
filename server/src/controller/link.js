@@ -15,6 +15,7 @@ exports.publishLink = async (req, res) => {
         //     titlelink: req.body.titlelinkform,
         //     link: req.body.linkform
         // })
+        
         const newLink = await shortlink.create({
             idUser: req.user.id,
             uniqueLink: nanoid(8),
@@ -55,24 +56,40 @@ exports.getLink = async(req, res) => {
         const increaseVisit = await shortlink.increment({
             visitTime: 1
         }, 
-            { where: { 
+        { where: { 
                 uniqueLink 
             } 
         })
-
-        let shortenLink = await shortlink.findOne({
+        
+        let shortLink = await shortlink.findOne({
             where: {
                 uniqueLink
             },attributes: {
                 exclude: ["createdAt","updatedAt"]
             }
         })
-        shortenLink = JSON.parse(JSON.stringify(shortenLink.dataValues))
-        let abc = shortenLink.link
-        console.log(typeof(shortenLink.titlelink))
-        res.status(400).send({
+
+        shortLink = JSON.parse(JSON.stringify(shortLink))
+
+
+        let titleLinkReplace = shortLink.titlelink.replace(/"/g, '')
+        let titleLinkArray = titleLinkReplace.split(',')
+        let linkReplace = shortLink.link.replace(/"/g, '')
+        let linkArray = linkReplace.split(',')
+
+        shortLink.image = process.env.PATH_FILE_LINK_IMAGE + shortLink.image
+        shortLink.titlelink = titleLinkArray
+        shortLink.link = linkArray
+        
+        const objectPropsData = ({titlelinks: shortLink.titlelink, links: shortLink.link})
+        console.log(objectPropsData)
+        
+        res.status(200).send({
             status: "success",
-            shortenLink
+            data: {
+                shortLink,
+                objectPropsData
+            }
         })
     } catch (error) {
         console.log(error)
