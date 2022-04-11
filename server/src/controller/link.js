@@ -5,25 +5,17 @@ const { nanoid } = require('nanoid')
 exports.publishLink = async (req, res) => {
     try {
         const { ...data } = req.body
-        // const newLink = await shortlink.create({
-        //     idUser: req.user.id,
-        //     title: req.body.titleform,
-        //     uniqueLink: nanoid(8),
-        //     visitTime: 0,
-        //     image: req.file.filename,
-        //     description: req.body.descriptionform,
-        //     titlelink: req.body.titlelinkform,
-        //     link: req.body.linkform
-        // })
-        
         const newLink = await shortlink.create({
             idUser: req.user.id,
+            title: req.body.title,
             uniqueLink: nanoid(8),
             visitTime: 0,
             image: req.file.filename,
-            ...data
+            description: req.body.description,
+            titlelink: req.body.titlelink,
+            link: req.body.link
         })
-
+        
         const seeLink = await shortlink.findOne({
             where: {
                 id: newLink.id
@@ -34,6 +26,7 @@ exports.publishLink = async (req, res) => {
         })
         let array1 = seeLink.dataValues
         array1 = JSON.parse(JSON.stringify(array1))
+        
         res.status(200).send({
             message: "Success",
             data: {

@@ -4,6 +4,7 @@ import { UserContext } from "../../context/userContext"
 import styleCSS from './Viewlink.module.css'
 import userDefault from '../../assets/userdefault.png'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from "react-router-dom"
 
 const ViewLinkPage = () => {
     const uniqueLink = useParams()
@@ -28,6 +29,8 @@ const ViewLinkPage = () => {
         getLink(uniqueLinksString)
     }, [])
 
+    const navigate = useNavigate()
+
     return(
         <div className={styleCSS.viewLinkMainComponent}>
             <div className={styleCSS.viewLinkMainComponentParent}>
@@ -38,7 +41,7 @@ const ViewLinkPage = () => {
                     {/* Check objectPropsData first before mapping */}
                     {(objectPropsData.links || objectPropsData.titlelinks) && Object.keys(objectPropsData.links, objectPropsData.titlelinks).map((item, index) => (
                         <div key={index}>
-                            <button className={styleCSS.viewLinkTitleLinks}>{objectPropsData.titlelinks[item]}</button>
+                            <button className={styleCSS.viewLinkTitleLinks} onClick={ () => navigate(window.open(objectPropsData.links[item]))}>{objectPropsData.titlelinks[item]}</button>
                         </div>
                     ))}
                 </div>
