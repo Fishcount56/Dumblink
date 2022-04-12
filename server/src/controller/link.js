@@ -139,3 +139,25 @@ exports.userLinks = async(req, res) => {
         })
     }
 }
+
+exports.deleteLinks = async(req, res) => {
+    const { uniqueLink } = req.params
+    try {
+        await shortlink.destroy({
+            where: {
+                uniqueLink
+            }
+        })
+
+        res.send({
+            statue: "Success",
+            message: `Success delete link with ${uniqueLink} id`
+        })
+    } catch (error) {
+        console.log(error)
+        res.send({
+            status: "Failed",
+            message: "Server Error"
+        })
+    }
+}

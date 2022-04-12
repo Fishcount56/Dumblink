@@ -8,6 +8,7 @@ import Edit from '../../assets/Edit.png'
 import Delete from '../../assets/Delete.png'
 import { API } from '../../config/api'
 import { UserContext } from '../../context/userContext'
+import DeleteData from '../modal/Deletemodal'
 
 
 const UserLinksContentPage = () => {
@@ -32,10 +33,37 @@ const UserLinksContentPage = () => {
     
     let total = userLinks.length
 
+    // Navigate according with item.uniqueLink to open the shortlink tab
     const openLink = (uniqueLink) => {
         navigate(window.open('/' + uniqueLink))
     }
 
+
+    // Delete Data
+    const [uniqueLinkDelete, setUniqueLinkDelete] = useState(null)
+    const [confirmDelete, setConfirmDelete] = useState(null)
+    const [show, setShow] = useState(false)
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
+
+    const handleDelete = (uniqueLink) => {
+        setUniqueLinkDelete(uniqueLink)
+        handleShow()
+    }
+    const deleteByUniqueLink = async(uniqueLink) => {
+        try {
+            await API.delete(`/deleteLink/${uniqueLink}`)
+            getLinks()
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        handleClose()
+        deleteByUniqueLink(uniqueLinkDelete)
+        setConfirmDelete(null)
+    }, [confirmDelete])
 
     return (
         <div className={styleCSS.userLinksContent}>
@@ -63,11 +91,12 @@ const UserLinksContentPage = () => {
                         <div className={styleCSS.operationButton}>
                             <img src={View} alt="View" onClick={ () => openLink(item.uniqueLink)} />
                             <img src={Edit} alt="Edit" />
-                            <img src={Delete} alt="Delete" />
+                            <img src={Delete} alt="Delete" onClick={() => handleDelete(item.uniqueLink)}/>
                         </div>
                     </div>
                 ))}
             </div>
+            <DeleteData setConfirmDelete={setConfirmDelete} show={show} handleClose={handleClose} />
         </div>
     )
 }

@@ -3,7 +3,7 @@ const router = express.Router()
 const { auth } = require("../middlewares/auth")
 const { uploadLink } = require("../middlewares/uploadLink")
 const { register, login, checkAuth, getUser } = require("../controller/auth")
-const { publishLink, getLink, getLinks, userLinks } = require("../controller/link")
+const { publishLink, getLink, getLinks, userLinks, deleteLinks } = require("../controller/link")
 
 router.post('/register', register)
 router.post('/login', login)
@@ -14,5 +14,6 @@ router.post('/publishlink', auth, uploadLink('image'), publishLink)
 router.get('/getSingleLink/:uniqueLink', getLink)
 router.get('/getLinks', getLinks)
 router.get('/userLinks', auth, userLinks)
+router.delete('/deleteLink/:uniqueLink', deleteLinks)
 
 module.exports = router

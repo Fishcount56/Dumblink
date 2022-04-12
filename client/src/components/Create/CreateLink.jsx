@@ -13,10 +13,20 @@ const CreateLink = () => {
         {titlelinks: "", links: ""},
         {titlelinks: "", links: ""},
     ])
+    
+    // Function for add a card when add button clicked
     const addForm = () => {
         setCardForm([...cardForm, { titlelinks: "", links: "" }]);
     };
 
+    // Function for delete a card when delete button clicked
+    const removeForm = (index) => {
+        const values = [...cardForm]
+        values.splice(index, 1)
+        setCardForm(values)
+    }
+
+    // Function to change the value of links components
     const formOnChange = (index, e) => {
         const values = [...cardForm]
         values[index][e.target.name] = e.target.value
@@ -104,6 +114,7 @@ const CreateLink = () => {
                                         <div className={styleCSS.linksCard} key={index}>
                                             <div className={styleCSS.linkImage}>
                                                 <img src={Chess} alt='link image' />
+                                                <button onClick={() => removeForm(index)} disabled={cardForm.length === 2}>Delete</button>
                                             </div>
                                             <div className={styleCSS.linkInput}>
                                                 <label for='titlelinkform'>Title Link</label>
