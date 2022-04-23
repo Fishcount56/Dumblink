@@ -82,6 +82,8 @@ const CreateLink = () => {
         }
     }
 
+    console.log(arr1)
+
     return (
         <div className={styleCSS.createLinkContent}>
             <div className={styleCSS.createLinkHeader}>

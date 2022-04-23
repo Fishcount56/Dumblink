@@ -4,7 +4,6 @@ const { nanoid } = require('nanoid')
 // Publish link
 exports.publishLink = async (req, res) => {
     try {
-        const { ...data } = req.body
         const newLink = await shortlink.create({
             idUser: req.user.id,
             title: req.body.title,
@@ -75,7 +74,6 @@ exports.getLink = async(req, res) => {
         shortLink.link = linkArray
         
         const objectPropsData = ({titlelinks: shortLink.titlelink, links: shortLink.link})
-        console.log(objectPropsData)
         
         res.status(200).send({
             status: "success",

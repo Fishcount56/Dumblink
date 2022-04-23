@@ -19,16 +19,16 @@ const TemplateContentPage = () => {
             </div>
             <div className={styleCSS.templateBody}>
                 <div className={styleCSS.bodyContent}>
-                    <img src={phone1} alt="template 1" />
+                    <img src={phone1} alt="template 1" onClick={() => navigate('/insertLink')}/>
                 </div>
                 <div className={styleCSS.bodyContent}>
                     <img src={phone2} alt="template 2" onClick={() => navigate('/insertLink')}/>
                 </div>
                 <div className={styleCSS.bodyContent}>
-                    <img src={phone3} alt="template 3" />
+                    <img src={phone3} alt="template 3" onClick={() => navigate('/insertLink')}/>
                 </div>
                 <div className={styleCSS.bodyContent}>
-                    <img src={phone4} alt="template 4" />
+                    <img src={phone4} alt="template 4" onClick={() => navigate('/insertLink')}/>
                 </div>
             </div>
         </div>
